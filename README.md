@@ -48,7 +48,7 @@ Podemos generar la imagen de Docker que necesitamos. Sobre el directorio que con
 4. Con la imagen de Docker lista, pueden verlo con el comando, "docker images". Podemos seguir con el paso siguiente, levantar ambos containers juntos, por un lado
 el container de MySQL y por el otro el container de la API. Para esto, ejecutamos:
             
-    *Detener el container ejecutado en el paso 2:
+    * Detener el container ejecutado en el paso 2:
             
             docker stop mysql-db
             
