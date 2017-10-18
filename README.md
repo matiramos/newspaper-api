@@ -52,11 +52,11 @@ el container de MySQL y por el otro el container de la API. Para esto, ejecutamo
             
             docker stop mysql-db
             
-    Eliminar el container detenido anteriormente:
+    * Eliminar el container detenido anteriormente:
             
             docker rm mysql-db
     
-    Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml
+    * Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml
             
             docker-compose up
     
