@@ -1,0 +1,24 @@
+version: '2.0'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=newspaper_db
+  spring-service:
+    image: docker:newspaper
+    depends_on:
+      - mysql-db
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=container
+      - DATABASE_HOST=192.168.99.100
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=newspaper_db
+      - DATABASE_PORT=3306
+      - DATABASE_CONFIG=update

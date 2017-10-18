@@ -1,0 +1,24 @@
+# Modify this profile if you are not running docker
+spring:
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.99.100:3306/newspaper_db
+      username: root
+      password: root
+      platform: mysql
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+
+---
+# Do not modify this profile
+spring:
+  profiles: container
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: ${DATABASE_CONFIG}
