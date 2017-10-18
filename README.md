@@ -38,7 +38,7 @@ Este proyecto se puede ejecutar dentro de un container utilizando Docker, de la 
             
     * Si estamos desde la consola de Windows:
     
-            ./mvnw package        
+            ./mvnw.cmd package        
             
 3. Una vez que el proceso de build este terminado satisfactoriamente y veamos el archivo "newspaper-1.0.0.jar" dentro del directorio /target.
 Podemos generar la imagen de Docker que necesitamos. Sobre el directorio que contiene el archivo Dockerfile, ejecutamos:
