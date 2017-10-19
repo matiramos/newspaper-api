@@ -58,7 +58,7 @@ el container de MySQL y por el otro el container de la API. Para esto, ejecutamo
             
             docker rm mysql-db
     
-    * Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml. **Los que esten con LINUX instalar** -> [docker-compose](https://docs.docker.com/compose/install/#install-compose)
+    * Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml. **Los que esten con LINUX instalar** -> [docker-compose](https://docs.docker.com/compose/install/#install-compose) y modificar en el archivo docker-compose.yml la ip 192.168.99.100 por localhost. Guardar y ejecutar:
             
             docker-compose up	    
     
