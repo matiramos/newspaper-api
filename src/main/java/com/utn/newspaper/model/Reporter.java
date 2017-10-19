@@ -2,11 +2,13 @@ package com.utn.newspaper.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Reporter {
 
     private Long id;
+    private UUID uid = UUID.randomUUID();
     private String name;
     private List<News> news;
 
@@ -18,6 +20,14 @@ public class Reporter {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UUID getUid() {
+        return uid;
+    }
+
+    public void setUid(UUID uid) {
+        this.uid = uid;
     }
 
     public String getName() {

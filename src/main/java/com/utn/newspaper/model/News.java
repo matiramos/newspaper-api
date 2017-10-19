@@ -2,11 +2,13 @@ package com.utn.newspaper.model;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.UUID;
 
 @Entity
 public class News {
 
     private Long id;
+    private UUID uid = UUID.randomUUID();
     private String title;
     private String body;
     private Calendar date;
@@ -21,6 +23,14 @@ public class News {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public UUID getUid() {
+        return uid;
+    }
+
+    public void setUid(UUID uid) {
+        this.uid = uid;
     }
 
     public String getTitle() {
@@ -51,7 +61,7 @@ public class News {
     }
 
     @ManyToOne
-    @JoinColumn(name = "news_category_id")
+    @JoinColumn(name = "news_category_id", nullable = false)
     public Category getCategory() {
         return category;
     }
@@ -61,7 +71,7 @@ public class News {
     }
 
     @ManyToOne
-    @JoinColumn(name = "news_reporter_id")
+    @JoinColumn(name = "news_reporter_id", nullable = false)
     public Reporter getReporter() {
         return reporter;
     }
