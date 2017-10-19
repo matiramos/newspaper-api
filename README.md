@@ -32,7 +32,7 @@ Este proyecto se puede ejecutar dentro de un container utilizando Docker, de la 
      
     * Una vez que nuestro container de MySQL este corriendo, lo podemos verificar con el comando "docker ps", estamos listos para buildear el proyecto. 
     Generalmente es necesario tener instalado Maven, pero Spring boot nos provee un wrapper del mismo para poder buildear sin necesidad de tener maven instalado. 
-    Ubicados sobre el directorio del proyecto, podemos ver los archivos mvnw y mvnw.cmd .
+    Ubicados sobre el directorio del proyecto, podemos ver los archivos mvnw y mvnw.cmd . Un paso adicional para aquellos que esten con **Linux** es modificar el archivo application.yml bajo el directorio /resources, cambiar el valor de url, por el siguiente  jdbc:mysql://localhost:3306/newspaper_db.
     
     * Si estamos desde Linux o la consola de Git Bash:
             
@@ -58,9 +58,9 @@ el container de MySQL y por el otro el container de la API. Para esto, ejecutamo
             
             docker rm mysql-db
     
-    * Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml
+    * Sobre el directorio del proyecto ejecutar el archivo docker-compose.yml. **Los que esten con LINUX instalar** -> [docker-compose](https://docs.docker.com/compose/install/#install-compose)
             
-            docker-compose up
+            docker-compose up	    
     
     Listo, ya podemos acceder a la api utilizando el puerto 8080 y la ip asignada a la docker machine, la misma se puede ver con el comando "docker-machine ip". Generalmente http://192.168.99.100:8080
 
