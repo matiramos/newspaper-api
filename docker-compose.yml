@@ -21,4 +21,4 @@ services:
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=newspaper_db
       - DATABASE_PORT=3306
-      - DATABASE_CONFIG=update
+      - DATABASE_CONFIG=create-drop
