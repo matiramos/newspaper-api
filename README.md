@@ -15,6 +15,8 @@ Informacion sobre los [rest repositories](https://docs.spring.io/spring-data/res
 
 Este proyecto se puede ejecutar dentro de un container utilizando Docker, de la siguiente forma:
 
+**Lista de comandos:** [cheatsheet](https://github.com/wsargent/docker-cheat-sheet)
+
 1. Instalar Docker en nuestro sistema:
     * [Windows 7, 8.1, 10 Home](https://www.docker.com/products/docker-toolbox)
     * [Windows 10 Pro 64 bit](https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe)
@@ -84,7 +86,166 @@ Otra forma de poder ejecutar la api es instalando las herramientas necesarias en
         
         ./mvnw.cmd spring-boot:run
 
-5. Si todo se configuro correctamente ya podemos ingresar a la api con "http://localhost:8080/"                
+5. Si todo se configuro correctamente ya podemos ingresar a la api con "http://localhost:8080/"
+
+
+## Ejemplo de request y response:
+
+Pueden usar [POSTMAN](https://www.google.com.ar/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwj10bzk4fzWAhWIfZAKHQ5ZDRIQFgglMAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman%2Ffhbjgbiflinjbdggehcddcbncdddomop&usg=AOvVaw0bEk4JkKX1g2WxEBFiQDnf)
+
+### Traer categorias:
+
+**GET** localhost:8080/categories o {docker-machine-ip}:8080/categories 
+
+Response: 
+```json
+{
+  "_embedded" : {
+    "categories" : [ {
+      "name" : "sports",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/1"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/1"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/1/news"
+        }
+      }
+    }, {
+      "name" : "local",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/2"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/2"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/2/news"
+        }
+      }
+    }, {
+      "name" : "world",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/3"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/3"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/3/news"
+        }
+      }
+    }, {
+      "name" : "economy",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/4"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/4"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/4/news"
+        }
+      }
+    }, {
+      "name" : "politics",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/5"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/5"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/5/news"
+        }
+      }
+    }, {
+      "name" : "entertainment",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/categories/6"
+        },
+        "category" : {
+          "href" : "http://localhost:8080/categories/6"
+        },
+        "news" : {
+          "href" : "http://localhost:8080/categories/6/news"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/categories{?page,size,sort}",
+      "templated" : true
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/profile/categories"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 6,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
+```              
+
+### Cargar una noticia:
+
+**POST** localhost:8080/news o {docker-machine-ip}:8080/news
+
+Body:
+```json
+{
+	  "title" : "Test title 4",
+	  "body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae urna ipsum. Pellentesque in quam nisl. Sed auctor mi vel sagittis suscipit.",
+	  "date" : "2017-09-24",
+	  "reporter" : "http://localhost:8080/reporters/1",
+	  "category" : "http://localhost:8080/categories/1"
+}
+``` 
+
+
+Response: status 201 Created
+
+Headers:
+
+    content-type →application/hal+json;charset=UTF-8
+    date →Thu, 19 Oct 2017 13:31:14 GMT
+    location →http://localhost:8080/news/2
+    transfer-encoding →chunked
+
+Body:
+```json
+{
+    "title": "Test title 4",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae urna ipsum. Pellentesque in quam nisl. Sed auctor mi vel sagittis suscipit.",
+    "date": "2017-09-24T00:00:00.000+0000",
+    "_links": {
+        "self": {
+            "href": "http://localhost:8080/news/2"
+        },
+        "news": {
+            "href": "http://localhost:8080/news/2"
+        },
+        "category": {
+            "href": "http://localhost:8080/news/2/category"
+        },
+        "reporter": {
+            "href": "http://localhost:8080/news/2/reporter"
+        }
+    }
+}
+```
         
             
     
