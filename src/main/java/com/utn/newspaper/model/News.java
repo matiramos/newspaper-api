@@ -1,82 +1,49 @@
 package com.utn.newspaper.model;
 
-import javax.persistence.*;
-import java.util.Calendar;
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class News {
 
-    private Long id;
-    private UUID uid = UUID.randomUUID();
-    private String title;
-    private String body;
-    private Calendar date;
-    private Category category;
-    private Reporter reporter;
-
     @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @NotBlank
+    @Size(min = 1, max = 150, message = "Title must be between 1 and 150 characters")
+    private String title;
 
-    public UUID getUid() {
-        return uid;
-    }
+    @NotBlank
+    @Size(min = 1, max = 200, message = "Subtitle must be between 1 and 200 characters")
+    private String subtitle;
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    @NotBlank
     @Column(columnDefinition = "TEXT")
-    public String getBody() {
-        return body;
-    }
+    private String body;
 
-    public void setBody(String body) {
-        this.body = body;
-    }
-
+    @NotNull
     @Column(name = "DATE_FIELD")
-    @Temporal(TemporalType.DATE)
-    public Calendar getDate() {
-        return date;
-    }
+    private LocalDate date;
 
-    public void setDate(Calendar date) {
-        this.date = date;
-    }
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "news_category_id", nullable = false)
-    public Category getCategory() {
-        return category;
-    }
+    private Category category;
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "news_reporter_id", nullable = false)
-    public Reporter getReporter() {
-        return reporter;
-    }
-
-    public void setReporter(Reporter reporter) {
-        this.reporter = reporter;
-    }
+    private Reporter reporter;
 }

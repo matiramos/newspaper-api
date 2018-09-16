@@ -1,0 +1,13 @@
+= Newspaper API Documentation
+
+.Curl request
+include::{snippets}/home/curl-request.adoc[]
+
+.HTTP response
+include::{snippets}/home/http-response.adoc[]
+
+.Request Body
+include::{snippets}/home/request-body.adoc[]
+
+.Response Body
+include::{snippets}/home/response-body.adoc[]

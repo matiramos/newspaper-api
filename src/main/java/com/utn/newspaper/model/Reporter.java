@@ -1,49 +1,36 @@
 package com.utn.newspaper.model;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.List;
+
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reporter {
 
-    private Long id;
-    private UUID uid = UUID.randomUUID();
-    private String name;
-    private List<News> news;
-
     @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @NotBlank
+    @Size(min = 1, max = 100, message = "Name must be between 1 and 100 characters")
+    private String name;
 
-    public UUID getUid() {
-        return uid;
-    }
+    @NotBlank
+    @Size(min = 1, max = 50, message = "Nationality must be between 1 and 50 characters")
+    private String nationality;
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotBlank
+    @Size(min = 1, max = 250, message = "Bio must be between 1 and 250 characters")
+    private String bio;
 
     @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
-    public List<News> getNews() {
-        return news;
-    }
-
-    public void setNews(List<News> news) {
-        this.news = news;
-    }
+    private List<News> news;
 }

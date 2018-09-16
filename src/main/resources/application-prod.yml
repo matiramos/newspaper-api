@@ -1,0 +1,15 @@
+# Configuration file for production mode
+server:
+  port: ${SERVER_PORT}
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: ${DATABASE_CONFIG}
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
